@@ -17,6 +17,7 @@ body {
 .display {
     height: 50px;
     background-color: #ddd;
+    padding: 15px 10px;
 }
 .buttons {
     display: flex;

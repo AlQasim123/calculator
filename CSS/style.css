@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+}
+/* start calculator */
+.container {
+    width: 200px;
+}
+.display {
+    height: 50px;
+    background-color: #ddd;
+}
+.buttons {
+    display: flex;
+    gap: 5px;
+    padding-top: 5px;
+}
+.digits,
+.operators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.digits .num {
+    flex: 1 calc((100% / 3) - 5px);
+}
+.operators .op {
+    flex: 1 calc((100% / 2) - 5px);
+}

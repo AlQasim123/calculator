@@ -18,8 +18,8 @@ function divide(a,b) {
 
 // controle the operation 
 function operate(numOne, op, numTwo) {
-    numOne = parseInt(numOne);
-    numTwo = parseInt(numTwo);
+    numOne = parseFloat(numOne);
+    numTwo = parseFloat(numTwo);
     switch(op) {
         case "+":
             return add(numOne, numTwo);
@@ -39,18 +39,20 @@ function operate(numOne, op, numTwo) {
 // after equal button clicked to clear screen 
 let result, current, operator, done = false; 
 
-//
-const display = document.querySelector(".display");
+
+const operationScreen = document.querySelector(".operations");
+const displayScreen = document.querySelector(".screen");
 
 // select all digits element 
 const numbers = document.querySelectorAll(".num");
 numbers.forEach((num) => {
     num.addEventListener("click", () => {
         if (done) {
-            display.textContent = "";
+            operationScreen.textContent = "";
+            displayScreen.textContent = "";
             done = false
         };
-        display.textContent += num.textContent;
+        displayScreen.textContent += num.textContent;
     })
 });
 
@@ -58,15 +60,20 @@ numbers.forEach((num) => {
 const operators = document.querySelectorAll(".op");
 operators.forEach((op) => {
     op.addEventListener("click", () => {
-        if (display.textContent) {
+        if (displayScreen.textContent) {
+            if (done) {
+                operationScreen.textContent = "";
+                done = false
+            };
             if (operator) {
-                current = display.textContent
+                current = displayScreen.textContent
                 result = operate(result, operator, current) 
             } else {
-                result = display.textContent;
+                result = displayScreen.textContent;
             }
             operator = op.textContent
-            display.textContent = "";
+            operationScreen.textContent += displayScreen.textContent + operator
+            displayScreen.textContent = "";
         };
     })
 });
@@ -74,13 +81,14 @@ operators.forEach((op) => {
 // the equal button
 const equal = document.querySelector(".equal")
 equal.addEventListener("click", () => {
-    if (display.textContent && operator) {
-        current = display.textContent;
+    if (displayScreen.textContent && operator) {
+        current = displayScreen.textContent;
+        operationScreen.textContent += current
         result = operate(result, operator, current)
-    } else  {
-        result = display.textContent
+    } else if (!result) {
+        result = displayScreen.textContent
     };
-    display.textContent = result
+    displayScreen.textContent = result; 
     result = current = operator = undefined;
     done = true;
 })
@@ -89,5 +97,6 @@ equal.addEventListener("click", () => {
 const clear = document.querySelector(".clear")
 clear.addEventListener("click", () => {
     firstNum = secondNum = operator = undefined;
-    display.textContent = "";
+    displayScreen.textContent = "";
+    operationScreen.textContent = "";
 })

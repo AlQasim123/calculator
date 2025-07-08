@@ -16,8 +16,16 @@ body {
 }
 .display {
     height: 50px;
-    background-color: #ddd;
-    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.operations{
+    font-size: 14px;
+    color: #555;
+}
+.screen {
+    font-size: 18px;
 }
 .buttons {
     display: flex;

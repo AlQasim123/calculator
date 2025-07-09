@@ -18,8 +18,8 @@ function divide(a,b) {
 
 // controle the operation 
 function operate(numOne, op, numTwo) {
-    numOne = parseFloat(numOne);
-    numTwo = parseFloat(numTwo);
+    numOne = (numOne !== ".") ? parseFloat(numOne): 0;
+    numTwo = (numTwo !== ".") ? parseFloat(numTwo): 0;
     let output;
     switch(op) {
         case "+":
@@ -130,5 +130,14 @@ del.addEventListener("click", () => {
         displayScreen.textContent = operationScreen.textContent
         operationScreen.textContent = ""        
     }
+})
+
+
+const dot = document.querySelector(".dot");
+dot.addEventListener("click", () => {
+    if (!displayScreen.textContent.includes(".")) {
+        displayScreen.textContent += dot.textContent
+    }
+    checkOperator = false;
 })
 

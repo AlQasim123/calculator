@@ -39,7 +39,7 @@ body {
     flex-wrap: wrap;
     gap: 5px;
 }
-.digits .num {
+.digits button {
     flex: 1 calc((100% / 3) - 5px);
 }
 .operators button {

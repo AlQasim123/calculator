@@ -4,44 +4,67 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #eee;
+    background-color: #111;
 }
 /* start calculator */
 .container {
-    width: 200px;
+    min-width: 300px;
+    max-width: 500px;
 }
 .display {
-    height: 60px;
+    padding: 10px 20px;
+    height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(3, 169, 244, .2);
 }
 .operations,
 .errors {
     font-size: 14px;
-    color: #555;
+    color: rgba(3, 169, 244, .5);
 }
 .screen {
     font-size: 18px;
+    color: #03A9F4;
+}
+.errors {
+    color: red;
 }
 .buttons {
     display: flex;
-    gap: 5px;
-    padding-top: 5px;
+    padding: 1px;
+    gap: 3px;
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: rgba(3, 169, 244, .05);
 }
 .digits,
 .operators {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 3px;
 }
 .digits button {
-    flex: 1 calc((100% / 3) - 5px);
+    flex: 1 calc((100% / 3 - 3px));
 }
 .operators button {
-    flex: 1 calc((100% / 2) - 5px);
+    flex: 1 calc((100% / 2) - 3px);
+}
+
+.buttons button {
+    border: 1px solid #111;
+    background-color: #111;
+    color: #03A9F4;
+    font-size: 18px;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+.buttons button:hover {
+    border-color:rgba(3, 169, 244, .2);
+    background-color: rgba(17, 17, 17, .5);
 }

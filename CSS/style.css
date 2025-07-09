@@ -42,6 +42,6 @@ body {
 .digits .num {
     flex: 1 calc((100% / 3) - 5px);
 }
-.operators .op {
+.operators button {
     flex: 1 calc((100% / 2) - 5px);
 }

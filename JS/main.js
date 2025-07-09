@@ -121,3 +121,14 @@ clear.addEventListener("click", () => {
     errorScreen.textContent = "";
     operationScreen.textContent = "";
 })
+
+const del = document.querySelector(".delete");
+del.addEventListener("click", () => {
+    if (displayScreen.textContent) {
+        displayScreen.textContent = displayScreen.textContent.slice(0,-1)
+    } else if (operationScreen.textContent) {
+        displayScreen.textContent = operationScreen.textContent
+        operationScreen.textContent = ""        
+    }
+})
+

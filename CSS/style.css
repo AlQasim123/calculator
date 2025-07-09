@@ -15,12 +15,13 @@ body {
     width: 200px;
 }
 .display {
-    height: 50px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.operations{
+.operations,
+.errors {
     font-size: 14px;
     color: #555;
 }

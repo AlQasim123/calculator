@@ -20,28 +20,42 @@ function divide(a,b) {
 function operate(numOne, op, numTwo) {
     numOne = parseFloat(numOne);
     numTwo = parseFloat(numTwo);
+    let output;
     switch(op) {
         case "+":
-            return add(numOne, numTwo);
+            output = add(numOne, numTwo);
+            break;
         case "-":
-            return subtract(numOne, numTwo);
+            output = subtract(numOne, numTwo);
+            break;
+        
         case "x":
-            return multiply(numOne, numTwo);
+            output = multiply(numOne, numTwo);
+            break;
+        
         case "/":
-            return divide(numOne, numTwo);
+            output = divide(numOne, numTwo);
+            break;
         default:
-            return "Math Error"
+            output = "Math Error"
+            break;
     }
+    if (typeof output === 'string') {
+        errorScreen.textContent = output;
+        return ;
+    }; 
+    return output
 }
 
 // vars to contains the result of multi operation 
 // and the current number on the screen and the operator and
 // after equal button clicked to clear screen 
-let result, current, operator, done = false; 
+let result, current, operator, done = false, checkOperator = false; 
 
 
 const operationScreen = document.querySelector(".operations");
 const displayScreen = document.querySelector(".screen");
+const errorScreen = document.querySelector(".errors");
 
 // select all digits element 
 const numbers = document.querySelectorAll(".num");
@@ -50,9 +64,11 @@ numbers.forEach((num) => {
         if (done) {
             operationScreen.textContent = "";
             displayScreen.textContent = "";
+            errorScreen.textContent = "";
             done = false
         };
         displayScreen.textContent += num.textContent;
+        checkOperator = false;
     })
 });
 
@@ -60,9 +76,11 @@ numbers.forEach((num) => {
 const operators = document.querySelectorAll(".op");
 operators.forEach((op) => {
     op.addEventListener("click", () => {
+        checkOperator = true
         if (displayScreen.textContent) {
             if (done) {
                 operationScreen.textContent = "";
+                errorScreen.textContent = "";
                 done = false
             };
             if (operator) {
@@ -81,16 +99,18 @@ operators.forEach((op) => {
 // the equal button
 const equal = document.querySelector(".equal")
 equal.addEventListener("click", () => {
-    if (displayScreen.textContent && operator) {
-        current = displayScreen.textContent;
-        operationScreen.textContent += current
-        result = operate(result, operator, current)
-    } else if (!result) {
-        result = displayScreen.textContent
-    };
-    displayScreen.textContent = result; 
-    result = current = operator = undefined;
-    done = true;
+    if (!checkOperator) {
+        if (displayScreen.textContent && operator) {
+            current = displayScreen.textContent;
+            operationScreen.textContent += current
+            result = operate(result, operator, current)
+        } else if (!result) {
+            result = displayScreen.textContent
+        };
+        displayScreen.textContent = result; 
+        result = current = operator = undefined;
+        done = true;
+    }
 })
 
 // the clear button
@@ -98,5 +118,6 @@ const clear = document.querySelector(".clear")
 clear.addEventListener("click", () => {
     firstNum = secondNum = operator = undefined;
     displayScreen.textContent = "";
+    errorScreen.textContent = "";
     operationScreen.textContent = "";
 })

@@ -13,10 +13,10 @@ function multiply(a,b) {
 
 function divide(a,b) {
     if (b === 0) return "Cant divide by 0, litte one :)";
-    return Math.round((a / b) * 1000) / 1000;
+    return a / b;
 }
 
-// controle the operation 
+// control the operation 
 function operate(numOne, op, numTwo) {
     numOne = (numOne !== ".") ? parseFloat(numOne): 0;
     numTwo = (numTwo !== ".") ? parseFloat(numTwo): 0;
@@ -44,7 +44,7 @@ function operate(numOne, op, numTwo) {
         errorScreen.textContent = output;
         return ;
     }; 
-    return output
+    return  Math.round((output) * 100000) / 100000
 }
 
 // vars to contains the result of multi operation 
@@ -116,7 +116,7 @@ equal.addEventListener("click", () => {
 // the clear button
 const clear = document.querySelector(".clear")
 clear.addEventListener("click", () => {
-    firstNum = secondNum = operator = undefined;
+    result = current = operator = undefined;
     displayScreen.textContent = "";
     errorScreen.textContent = "";
     operationScreen.textContent = "";
@@ -141,3 +141,19 @@ dot.addEventListener("click", () => {
     checkOperator = false;
 })
 
+const keymap = {
+    "=": "Enter",
+    "x": "*",
+    "AC": "Delete",
+    "DEL": "Backspace",
+}
+
+const buttons = document.querySelectorAll("button")
+document.addEventListener("keydown", function(event) {
+    buttons.forEach((btn) => {
+        let btnKey =  keymap[btn.textContent] || btn.textContent
+        if (event.key === btnKey) {
+            btn.click()
+        }
+  })  
+})
